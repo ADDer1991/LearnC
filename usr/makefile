@@ -7,7 +7,16 @@ DEFINES =
 # 模块目录
 MODULEDIR := ../common \
              ../io \
+			 ../unittest \
 			 ../main
+
+# 头文件路径
+INCLUDEDIRS := ../../common/inc \
+              ../../io/inc \
+              ../../main/inc \
+			  ../../unittest/inc
+
+export INCLUDEDIRS
 
 # 源文件
 SOURCEDIR := $(addsuffix /src,$(MODULEDIR))
@@ -18,18 +27,14 @@ SOURCES := $(wildcard $(SOURCES))
 OBJS := $(patsubst %.c,%.o,$(SOURCES))
 OBJS := $(subst /src/,/build/,$(OBJS))
 
-.PHONY: all clean obj
+.PHONY: all clean
 
-all: $(TARGET)
-
-$(TARGET): $(OBJS)
-	$(CC) -o $@ $^
-	
-$(OBJS):
+all:
 	@for srcdir in $(SOURCEDIR); \
 	do \
 	make -C $$srcdir all; \
 	done
+	$(CC) -o $(TARGET) $(OBJS)
 
 clean:
 	@for srcdir in $(SOURCEDIR); \

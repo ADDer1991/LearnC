@@ -4,4 +4,4 @@
 ##########################################################
 
 # 编译模板，编译生成obj文件
-include ../../usr/makeobjs.mk
+include ../../usr/makeobjs.mak

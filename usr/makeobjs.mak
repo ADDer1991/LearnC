@@ -5,10 +5,6 @@
 # 输出：../build/*.o  ../build/*.d
 ########################################################
 
-# 头文件路径
-INCLUDEDIRS = ../../common/inc \
-              ../../io/inc \
-              ../../main/inc 
 INCLUDEDIRS := $(addprefix -I,$(INCLUDEDIRS))
 
 # 源文件
@@ -23,7 +19,7 @@ DEPS := $(patsubst %.o, %.d, $(OBJS))
 
 # 编译选项
 CC = gcc
-CFLAGS = -c -Wall -MMD
+CFLAGS = -c -g -Wall -MMD
 
 .PHONY: all clean
 
