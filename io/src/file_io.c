@@ -3,10 +3,15 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "type_def.h"
+#include "common.h"
 #include "file_io.h"
 #include <sys/stat.h>
 //#include "commdef.h"
 
+/*
+ * 本文件使用的宏定义
+ */
+#define RWRWRW (S_IRUSR | S_IWUSR | S_IRGRP | S_IRGRP | S_IROTH | S_IWOTH)
 
 /*  
  * 名 称: unbuf_io_exmpl
@@ -113,5 +118,35 @@ void unbuf_fio_exmpl(void)
 		printf("can't remove %s\n",filename);
 	}
 	printf("remove %s\n",filename);
+}
+
+/*  
+ * 名 称: umask_exmpl
+ * 描 述：umask函数以及open函数mode_t参数 用法例子
+ * 输 入：
+ * 输 出：
+ * 返 回：
+ * 说 明：
+ */
+void umask_exmpl(void)
+{
+	int fd;
+	const char filename[] = "file_umask.txt";
+	
+	/* 设置当前文件模式创建屏蔽字 */
+	umask(S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
+	
+	/* 以open函数的mode_t参数创建文件 */
+	fd = open(filename, O_CREAT, S_IRUSR);
+	JUDGE_OPEN_RESULT_AND_RETURN(fd, filename);
+	close(fd);
+	sys("ls -l %s", filename);
+	remove(filename);
+
+	fd = open(filename, O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	JUDGE_OPEN_RESULT_AND_RETURN(fd, "test/file_umask3.txt");
+	close(fd);
+	sys("ls -l %s", filename);
+	remove(filename);
 }
 

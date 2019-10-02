@@ -3,3 +3,4 @@
  */
 extern void sys_ut(void);
 extern void unbuf_fio_exmpl(void);
+extern void umask_exmpl(void);
