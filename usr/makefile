@@ -8,13 +8,15 @@ DEFINES =
 MODULEDIR := ../common \
              ../io \
 			 ../unittest \
-			 ../main
+			 ../main \
+			 ../training
 
 # 头文件路径
 INCLUDEDIRS := ../../common/inc \
               ../../io/inc \
               ../../main/inc \
-			  ../../unittest/inc
+			  ../../unittest/inc \
+			  ../../training/inc
 
 export INCLUDEDIRS
 

@@ -38,12 +38,20 @@ t_testfunc g_test_common[] =
     {0, "sys_ut", sys_ut},
     {0xffff, NULL, NULL}  /*结束标志*/
 };
+
+/* training.c文件UT用例 */
+t_testfunc g_test_training[] = 
+{
+    {0, "q1_ut", q1_ut},
+    {0xffff, NULL, NULL}  /*结束标志*/
+};
 	
 /* UT测试文件 */
 t_testfile g_test_files[] = 
 {
 	{0, "file_io.c", GET_FUNCNUM(g_test_file_io), g_test_file_io},
 	{1, "common.c",  GET_FUNCNUM(g_test_common),  g_test_common},
+	{2, "training.c",  GET_FUNCNUM(g_test_training),  g_test_training},
 	{0xffff, NULL, 0, NULL}  /*结束标志*/
 };
 
